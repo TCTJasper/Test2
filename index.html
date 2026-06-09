@@ -3,36 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品展示頁面</title>
+    <title>商品展示 | 精選良品</title>
+    <!-- 引入 Bootstrap 5 現成美化樣式 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        body { background-color: #f8f9fa; padding: 20px; }
-        .product-card { max-width: 500px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 px 10px rgba(0,0,0,0.1); }
+        body { background-color: #f8f9fa; font-family: "Microsoft JhengHei", sans-serif; }
+        .product-card { border: none; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .product-img { width: 100%; height: 400px; object-fit: cover; }
+        .badge-new { background-color: #ff4757; color: white; border-radius: 50px; padding: 5px 15px; }
+        #qrcode img { margin: 0 auto; border: 10px solid #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body>
 
-    <div class="product-card text-center">
-        <img src="product.jpg" alt="商品圖片" class="img-fluid rounded mb-3" style="max-height: 300px;">
-        
-        <h2 class="fw-bold">超級明星商品</h2>
-        <p class="text-muted">這是這款商品的精彩介紹描述，具備多功能與高品質。</p>
-        <h4 class="text-danger mb-4">NT$ 990</h4>
-        
-        <hr>
-        
-        <p class="text-secondary small">掃描下方 QR Code 分享此商品</p>
-        <div id="qrcode" class="d-flex justify-content-center mb-3"></div>
-    </div>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            
+            <!-- 商品卡片 -->
+            <div class="card product-card">
+                <!-- 商品圖片 (請更換為你的圖片名稱，例如 product.jpg) -->
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80" class="product-img" alt="商品圖片">
+                
+                <div class="card-body p-4">
+                    <span class="badge badge-new mb-2">新品上市</span>
+                    <h2 class="fw-bold mb-3">極簡質感生活精品</h2>
+                    <p class="text-muted">這是一款結合美學與實用性的設計，旨在為您的日常生活帶來更多便利與品味。採用高品質環保材質製作，耐用且極具手感。</p>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <h3 class="text-primary fw-bold mb-0">NT$ 1,280</h3>
+                        <button class="btn btn-dark px-4 py-2 rounded-pill">立即洽詢</button>
+                    </div>
 
-    <script>
-        // 自動抓取上傳後的雲端網址，並生成 QR Code
+                    <hr class="my-4">
+
+                    <!-- QR Code 展示區 -->
+                    <div class="text-center">
+                        <p class="small text-secondary mb-3">掃描下方 QR Code 分享此商品</p>
+                        <div id="qrcode" class="d-flex justify-content-center"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 頁尾 -->
+            <p class="text-center mt-4 text-muted small">© 2026 您的品牌名稱 | 版權所有</p>
+        </div>
+    </div>
+</div>
+
+<!-- 引入 QR Code 現成產生套件 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+    // 自動抓取網址並生成 QR Code
+    window.onload = function() {
         new QRCode(document.getElementById("qrcode"), {
             text: window.location.href,
-            width: 140,
-            height: 140
+            width: 160,
+            height: 160,
+            colorDark : "#2d3436",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
         });
-    </script>
+    };
+</script>
+
 </body>
 </html>
